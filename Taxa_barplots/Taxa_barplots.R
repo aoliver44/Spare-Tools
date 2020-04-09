@@ -71,5 +71,5 @@ ggplot(data = subset(midas_melt),
   theme(axis.ticks.x=element_blank()) +
   labs(x = '',
        y = 'Relative Abundance') + theme(legend.position = "none") +
-  ggtitle("Donors") +
+  ggtitle("Taxa Barplot") +
   theme(plot.title = element_text(hjust = 0.5), plot.margin = unit(c(0.5, 0, 0.5, 0.5), "cm"))
