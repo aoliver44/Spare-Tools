@@ -63,7 +63,7 @@ julio_color <- c("#003f5c", "#2f4b7c", "#665191", "#a05195", "#d45087", "#f95d6a
 
 ggplot(data = subset(midas_melt), 
        aes(x = as.factor(Timepoint), weight = value, fill = L6)) +
-  geom_bar() +
+  geom_bar(position = position_fill()) +
   theme_bw(base_size = 16) + 
   facet_grid(. ~  Individual, space = "free", scales = "free") + 
   scale_fill_manual(values = julio_color) +
@@ -72,4 +72,5 @@ ggplot(data = subset(midas_melt),
   labs(x = '',
        y = 'Relative Abundance') + theme(legend.position = "none") +
   ggtitle("Taxa Barplot") +
+  scale_y_continuous(labels = scales::percent_format()) +
   theme(plot.title = element_text(hjust = 0.5), plot.margin = unit(c(0.5, 0, 0.5, 0.5), "cm"))
