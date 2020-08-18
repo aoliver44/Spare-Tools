@@ -32,7 +32,8 @@ qiime demux summarize \
 
 unzip demux.qza -d demultiplexed_seqs
 cd demultiplexed_seqs/*/data
-gunzip *.fastq.gz
+module load pigz
+pigz -d -p 4 *.fastq.gz
 
 #Clean as you go:
 #rm ../../imported_data.qza
@@ -53,10 +54,10 @@ list.files(path);
 fnFs <- sort(list.files(path, pattern='L001_R1_001.fastq', full.names = TRUE));
 fnRs <- sort(list.files(path, pattern='L001_R2_001.fastq', full.names = TRUE));
 
-sample.names <- sapply(strsplit(basename(fnFs), '_'), `[`, 1);
+sample.names <- sapply(strsplit(basename(fnFs), '_'), getElement, 1);
 
-QC_forward <- dada2::plotQualityProfile(fnFs[1:8]);
-QC_reverse <- dada2::plotQualityProfile(fnRs[1:8]);
+QC_forward <- dada2::plotQualityProfile(fnFs[1:16]);
+QC_reverse <- dada2::plotQualityProfile(fnRs[1:16]);
 
 ggsave('QC-Forward.pdf', plot = QC_forward);
 ggsave('QC-Reverse.pdf', plot = QC_reverse);
