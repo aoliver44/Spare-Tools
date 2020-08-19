@@ -1,7 +1,7 @@
 #!/bin/bash
 #$ -N import_qc
-#$ -q bio,abio,pub64,free64
-#$ -pe openmp 2
+#$ -q bio,abio*,pub*,free*
+#$ -pe openmp 4
 #$ -R y
 #$ -m beas
 #$ -cwd

@@ -68,8 +68,8 @@ rownames(track) <- sample.names
 write.csv(track, file = 'Dada2_stats_full.csv');
 
 # Assign taxonomy
-taxa <- dada2::assignTaxonomy(seqtab.nochim, '/dfs5/bio/aoliver2/MISC/Cooper/fruit_tree/rdp_train_set_16.fa.gz', multithread=TRUE, minBoot = 60);
-taxa <- addSpecies(taxa, '/dfs5/bio/aoliver2/MISC/Cooper/fruit_tree/rdp_species_assignment_16.fa.gz')
+taxa <- dada2::assignTaxonomy(seqtab.nochim, '/dfs5/bio/whitesonlab/rdp_database/rdp_train_set_16.fa.gz', multithread=TRUE, minBoot = 60);
+taxa <- addSpecies(taxa, '/dfs5/bio/whitesonlab/rdp_database/rdp_species_assignment_16.fa.gz')
 saveRDS(taxa, file = 'taxa.rds')
 write.csv(seqtab.nochim, 'OTU_table.csv');
 write.csv(taxa, 'Species_taxa.csv');
