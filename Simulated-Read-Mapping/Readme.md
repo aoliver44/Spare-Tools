@@ -1,4 +1,15 @@
 ### Genome simulator
+
+This script is designed to take known genomes (ones youve download from a repository perhaps)
+and create simulated reads from these genomes. It then will align these reads to a metagenome 
+supplied by the user.
+
+One potential usefulness of this is when you have a metagenomic assembly for which you wish
+to search it for a particular organism that did not get annotated sufficiently. Here you can 
+create a subset of reads from the organism (or even gene/operon) you want to search for (or organisms! just make them
+all one fasta file!) and this program will tell you which, if any, contigs in your metagenome have
+matches.
+
 	1. Runs using BBMAP (v37.50) and SAMTOOLS (v1.9)
 	2. Usage:
 		./genome_simulator.sh [FASTA] [REFERENCE]
