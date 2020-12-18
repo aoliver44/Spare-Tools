@@ -24,7 +24,7 @@ matches.
 	
 ### Output
 Below you can see that 1430 reads mapped to contig c_000000002592! Wow! In this example
-contig c_000000002592 wasnt annotated further than Bacteria by the anntation software. But 
+contig c_000000002592 wasn't annotated further than Bacteria by the annotation software. But 
 stick that little guy into BLASTn and you have all kinds of close hits!
 
 c_000000002592	22035	**1430**	0
