@@ -68,11 +68,11 @@ all_genome_info <- all_genome_info %>%
   filter(., family != '') %>%
   filter(., genus != '') %>% droplevels();
                                               
-all_genome_info <- all_genome_info[!duplicated(all_genome_info$species_id),];
+all_genome_info <- all_genome_info[!duplicated(all_genome_info\$species_id),];
 
 midas_phylogeny <- merge(all_genome_info, raw, by.x = 'species_id', by.y = 'row.names');
 
-midas_phylogeny$sum <- rowSums(midas_phylogeny[10:NCOL(midas_phylogeny)]);
+midas_phylogeny\$sum <- rowSums(midas_phylogeny[10:NCOL(midas_phylogeny)]);
 midas_phylogeny <- midas_phylogeny %>% filter(., sum > 0) %>% select(., -species_id, -sum, -genome_id);
 
 write_delim(x = midas_phylogeny, path = 'count_reads_tax.midas.tsv', delim = '\t', col_names = T);
