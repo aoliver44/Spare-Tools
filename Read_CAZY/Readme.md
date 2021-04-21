@@ -20,7 +20,6 @@ This script is designed to identify Glycoside hydrolases and polysaccharide lyas
 ```
 git clone https://github.com/aoliver44/Spare-Tools.git
 cd Spare-Tools/Read_CAZY
-chmod +x read_cazy.sh
 chmod +x preprocess.sh
 bash read_cazy.sh
 ```

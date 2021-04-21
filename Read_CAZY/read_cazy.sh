@@ -38,11 +38,11 @@
 
 # define some environmental variables:
 # path to reads
-BASEDIR=/dfs5/bio/aoliver2/chicha/microbiome_comparisons/read_cazy_test/
+BASEDIR=$PWD/
 # path to HMM database, called dbCAN.txt
 DBCAN_DB=/dfs3b/whitesonlab/CAZy_dbs/dbCAN.txt
 # where you want the outfiles written
-WORKDIR=/dfs5/bio/aoliver2/chicha/microbiome_comparisons/read_cazy_test/output/
+WORKDIR=$PWD/output/
 
 while read sample; do
 echo "#!/bin/bash
