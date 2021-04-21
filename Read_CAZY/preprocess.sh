@@ -10,8 +10,8 @@ module load R/3.6.2
 sample=$1
 
 echo "
-library(dplyr);
-library(stringr);
+require(dplyr);
+require(stringr);
 
 microbe_census_params <- read.csv(paste0('${sample}', '.mc_out'), sep='\t', stringsAsFactors=F)
 microbe_census_params2 <- droplevels(microbe_census_params);
