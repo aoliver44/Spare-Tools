@@ -10,7 +10,7 @@ This script is designed to identify Glycoside hydrolases and polysaccharide lyas
 	* R/3.6.2 with tidyverse
 	* All of this is on the UCI HPC3
 - This only uses HMM...so it does an OK job identifing conserved domains of CAZys.
-	* in my brief look, it slightly over estimates based on HMM on things that assemble WELL (something like 49/43). But underestimates slightly more when you use more than 1 tool to identify CAZymes (something like 49/70 identified). 
+	* in my brief look, it slightly over estimates based on HMM on things that assemble WELL (something like 49/43 in sample data). But underestimates slightly more when you use more than 1 tool to identify CAZymes (something like 49/70 identified). 
 	* I dont think there is a perfect answer, as long as you are doing the same thing to all the samples.
 - The script will run on the example data right now, modify it to run on your data!
 	* read the script to see those places to change (repair.sh section, sample_list.txt section, BASDIR/WORKDIR sections, SLURM parameters, etc.)
