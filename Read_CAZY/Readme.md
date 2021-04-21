@@ -3,7 +3,7 @@
 This script is designed to identify Glycoside hydrolases and polysaccharide lyases (GH and PLs...it can also idenitfy everything if you make a small tweak) in shotgun metagenomic reads. Some caveats:
 
 - you need other programs, specifically
-	* conda installation of rundbcan (named rundbcan)
+	* conda installation of rundbcan (named run_dbcan)
 	* conda installation of microbecensus (named microbecensus)
 	* prodigal
 	* bbmap
