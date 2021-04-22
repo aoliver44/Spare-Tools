@@ -180,7 +180,7 @@ rm ${sample}.clean.unmer*
 #rm ${sample}.mc_out
 rm ${sample}.norm_cazy.csv
 rm ${sample}.norm_cazy_1.csv
-cat ${sample}*.out ${sample}*.err > ${sample}.err.out
+cat ${sample}*.out ${sample}*.err > ${sample}.err_out
 rm ${sample}*.out
 rm ${sample}*.err
 
