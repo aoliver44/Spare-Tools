@@ -71,7 +71,7 @@ The information of what that means can be found in this [document](https://docs.
 # to add a line to a file without opening a text editor
 $ echo "path/to/file,0,1" >> ~/.globusonline/lta/config-paths 
 
-# or to edit in an editor, edit file located here (i.e.):
+# or to edit in an editor, edit file located here (e.g.):
 $ nano ~/.globusonline/lta/config-paths
 ```
 Cool! So what we just did was give was give read/write access to the directory with the data, which is necessary in order to copy it over to Juno. For these changes to take effect, go ahead and stop and start Globus again:
@@ -95,7 +95,7 @@ What will we change it to? Lets set that to **JUNO**. Search the collections for
 
   - Username: SCINET username (usually something like rosalind.franklin)
 
-  - PASSWORD: scinetpassword+two-factor_authentication_code (i.e. password123456)
+  - PASSWORD: scinetpassword+two-factor_authentication_code (e.g. password123456)
 - Next navigate to the project directory in the Path
   - Path: /LTS/project/lemay_diet_guthealth/
   ![Juno path](juno_path.png)
