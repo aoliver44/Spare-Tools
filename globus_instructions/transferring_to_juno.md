@@ -98,6 +98,8 @@ What will we change it to? Lets set that to **JUNO**. Search the collections for
   - PASSWORD: scinetpassword+two-factor_authentication_code (e.g. password123456)
 - Next navigate to the project directory in the Path
   - Path: /LTS/project/lemay_diet_guthealth/
+
+
   ![Juno path](juno_path.png)
 
 Cool, now we have one endpoint set up. Use the window below the collection/path to navigate the folder structure. You can right click to make new folders too. **ANYTHING YOU DELETE HERE WILL BE DELETED FOR GOOD.**
