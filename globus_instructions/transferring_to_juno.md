@@ -2,7 +2,7 @@
 
 Andrew Oliver
 ____________
-Listed here are instructions for moving data from (specifically) Spitfire to the USDA Juno archive servers. These instructions will likely work, with small changes, to other HPC environments. **These instructions also assume you have globus connect personal ALSO installed on your personal machine**. If you need some help with that, follow the USDA instructions located here: https://scinet.usda.gov/guide/file-transfer/#globus-connect-personal (super easy...keep in mind if you are on a mac, you will have to give globus permission to any folders you want it to have access to. This should be apparent from system prompts though)
+Listed here are instructions for moving data from (specifically) Spitfire to the USDA Juno archive servers. These instructions will likely work, with small changes, to other HPC environments. **These instructions also assume you have the application "Globus Connect Personal" ALSO installed on your personal machine**. If you need some help with that, follow the USDA instructions located here: https://scinet.usda.gov/guide/file-transfer/#globus-connect-personal (super easy...keep in mind if you are on a mac, you will have to give globus permission to any folders you want it to have access to. This should be apparent from system prompts though).
 
 
 ### 1. Log on to Spitfire and navigate to your home directory
@@ -12,7 +12,7 @@ $ ssh user@spitfire.genomecenter.ucdavis.edu
 $ cd /share/lemaylab/$USER
 ```
 
-### 2. Download Globus connect personal
+### 2. Download Globus connect personal for Spitfire
 
 ```
 $ wget https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz
@@ -35,7 +35,7 @@ $ ./globusconnectpersonal -start &
 Next you can check if it  is up and running!
 
 ```
-./globusconnectpersonal -status
+$ ./globusconnectpersonal -status
 ```
 
 You should see something like this if it is running:
@@ -50,9 +50,7 @@ Transfer Status: idle
 Here is the slightly janky way i figured it out.
 
 ```
-# change dir to root level hidden directory
-cat ~/.globusonline/lta/client-id.txt
-
+$ cat ~/.globusonline/lta/client-id.txt
 ```
 Ok that wasn't tricky at all...but it was tricky finding that information the first time (trust me). The resulting string is your **personal endpoint** on Spitfire. Keep this information handy, maybe even copy it.
 
@@ -71,12 +69,17 @@ The information of what that means can be found in this [document](https://docs.
 
 ```
 # to add a line to a file without opening a text editor
-echo "path/to/file,0,1" >> ~/.globusonline/lta/config-paths 
+$ echo "path/to/file,0,1" >> ~/.globusonline/lta/config-paths 
 
 # or to edit in an editor, edit file located here (i.e.):
-nano ~/.globusonline/lta/config-paths
+$ nano ~/.globusonline/lta/config-paths
 ```
-Cool! So what we just did was give was give read/write access to the directory with the data, which is necessary in order to copy it over to Juno.
+Cool! So what we just did was give was give read/write access to the directory with the data, which is necessary in order to copy it over to Juno. For these changes to take effect, go ahead and stop and start Globus again:
+
+```
+$ ./globusconnectpersonal -stop
+$ ./globusconnectpersonal -start &
+```
 
 ### 6. Everything is set-up! Now we open up globus connect personal on our local machine and transfer files!
 
@@ -132,7 +135,9 @@ $ ./globusconnectpersonal -status
 ## Troubleshooting tips:
 
 - if you are having a hard time logging into Spitfire, try checking if you already had a Spitfire connection open. Trying stoping it and starting it again. Your endpoint ID will not change.
-- 
+- If you cant open a directory in globus for Spitfire, check that config-paths file and make sure the path is correct
+- If you cant open the project directory, make sure you have permission to access it. Ask the project directory owner, or in Ceres, run:
+  - ``` /usr/local/bin/my_quotas ```
 
 -----------
 Last modified: April 26, 2022
