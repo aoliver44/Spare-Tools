@@ -136,7 +136,9 @@ $ ./globusconnectpersonal -status
 
 ## Troubleshooting tips:
 
-- if you are having a hard time logging into Spitfire, try checking if you already had a Spitfire connection open. Trying stoping it and starting it again. Your endpoint ID will not change.
+- if you are having a hard time logging into Spitfire from Globus, try checking if you already had a Spitfire connection open through the commandline. Trying stoping it and starting it again. Your endpoint ID will not change.
+  - ```$ ./globusconnectpersonal -stop ```
+  - ```$ ./globusconnectpersonal -start & ```
 - If you cant open a directory in globus for Spitfire, check that config-paths file and make sure the path is correct
 - If you cant open the project directory, make sure you have permission to access it. Ask the project directory owner, or in Ceres, run:
   - ``` /usr/local/bin/my_quotas ```
