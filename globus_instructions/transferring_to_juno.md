@@ -28,7 +28,7 @@ $ cd globusconnectpersonal-x.y.z
 ```
 
 ### 3. Start up a globus connect personal instance
-The first time you run this, it may try a set-up process. This is necessary for it to work, so follow the prompts. I believe it will ask you to name your "server" (i dont actually know what it is, but i will suggest how you name it...). Name the "server" spitfire_$USER (for example spitfire_aoliver)
+The first time you run this, it may try a set-up process. This is necessary for it to work, so follow the prompts. I believe it will ask you to name your Endpoint. I will suggest how you name it: spitfire_$USER (for example spitfire_aoliver)
 
 ```
 # first time running this, initiate the setup:
