@@ -9,7 +9,9 @@ Listed here are instructions for moving data from (specifically) Spitfire to the
 
 ```
 $ ssh user@spitfire.genomecenter.ucdavis.edu
-$ cd /share/lemaylab/$USER
+
+# navigate to your home directory
+$ cd ~
 ```
 
 ### 2. Download Globus connect personal for Spitfire
@@ -26,17 +28,23 @@ $ cd globusconnectpersonal-x.y.z
 ```
 
 ### 3. Start up a globus connect personal instance
-Note: The first time you run this, it may try a set-up process. This is necessary for it to work, so follow the prompts. I believe it will ask you to name your "server" (i dont actually know what it is, but i will suggest how you name it...). Name the "server" spitfire_$USER (for example spitfire_aoliver)
+The first time you run this, it may try a set-up process. This is necessary for it to work, so follow the prompts. I believe it will ask you to name your "server" (i dont actually know what it is, but i will suggest how you name it...). Name the "server" spitfire_$USER (for example spitfire_aoliver)
+
+```
+# first time running this, initiate the setup:
+$ ./globusconnectpersonal -setup
+
+# it will ask you to name your endpoint during this setup:
+$ >Input a value for the Endpoint Name: spitfire_$USER
+```
+Now you can start the globus spitfire instance! And also check if it is running.
 
 ```
 $ ./globusconnectpersonal -start &
-```
 
-Next you can check if it  is up and running!
-
-```
 $ ./globusconnectpersonal -status
 ```
+
 
 You should see something like this if it is running:
 
@@ -59,7 +67,10 @@ You can do this using your favorite text editor in terminal (vim/nano) or if you
 
 The format for text should be:
 
-FULL/path/to/directory/or_file,0,1
+FULL/path/to/directory/or_file,0,0
+
+
+(e.g.) ~/share/lemaylab-backedup/aoliver,0,0
 
 The information of what that means can be found in this [document](https://docs.globus.org/how-to/globus-connect-personal-linux/) (and below:)
 
@@ -69,7 +80,10 @@ The information of what that means can be found in this [document](https://docs.
 
 ```
 # to add a line to a file without opening a text editor
-$ echo "path/to/file,0,1" >> ~/.globusonline/lta/config-paths 
+$ echo "path/to/file,0,0" >> ~/.globusonline/lta/config-paths 
+
+# for a specific Lemay Lab example, add:
+echo "~/share/lemaylab-backedup/<youruserdirectory>,0,0" >> ~/.globusonline/lta/config-paths
 
 # or to edit in an editor, edit file located here (e.g.):
 $ nano ~/.globusonline/lta/config-paths
@@ -144,4 +158,4 @@ $ ./globusconnectpersonal -status
   - ``` /usr/local/bin/my_quotas ```
 
 -----------
-Last modified: April 26, 2022
+Last modified: May 2, 2022
