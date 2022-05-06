@@ -2,7 +2,9 @@
 
 Andrew Oliver
 ____________
-Listed here are instructions for moving data from (specifically) Spitfire to the USDA Juno archive servers. These instructions will likely work, with small changes, to other HPC environments. **These instructions also assume you have the application "Globus Connect Personal" ALSO installed on your personal machine**. If you need some help with that, follow the USDA instructions located here: https://scinet.usda.gov/guide/file-transfer/#globus-connect-personal (super easy...keep in mind if you are on a mac, you will have to give globus permission to any folders you want it to have access to. This should be apparent from system prompts though).
+**NOTE:** Listed here are instructions for moving data from (specifically) Spitfire to the USDA Juno archive servers. These instructions will likely work, with small changes, to other Linux-based HPC environments. In order to move files from your local computer to SCINet resources, follow instructions located [here](https://scinet.usda.gov/guide/file-transfer/#:~:text=Globus%20Online%20is%20the%20recommended,code%20for%20every%20file%20transfer.). Jump to step 6 in these instructions and use your personal computer as a endpoint.
+
+**These instructions also assume you have the application "Globus Connect Personal" ALSO installed on your personal machine**. If you need some help with that, follow the USDA instructions located here: https://scinet.usda.gov/guide/file-transfer/#globus-connect-personal (super easy...keep in mind if you are on a mac, you will have to give globus permission to any folders you want it to have access to. This should be apparent from system prompts though).
 
 
 ### 1. Log on to Spitfire and navigate to your home directory
@@ -158,4 +160,4 @@ $ ./globusconnectpersonal -status
   - ``` /usr/local/bin/my_quotas ```
 
 -----------
-Last modified: May 2, 2022
+Last modified: May 6, 2022
