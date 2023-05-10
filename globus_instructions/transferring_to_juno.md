@@ -158,9 +158,7 @@ $ ./globusconnectpersonal -status
 - If you cant open a directory in globus for Spitfire, check that config-paths file and make sure the path is correct
 - If you cant open the project directory, make sure you have permission to access it. Ask the project directory owner, or in Ceres, run:
   - ``` /usr/local/bin/my_quotas ```
-- You could set up a screen session if you are transferring from a remote server to Juno. It is super common for the pipe to break and your transfer to stall out!
-  - ```screen -S globus_transfer```
-- **Better yet**, make your SSH session stay alive longer!!!
+- Make your SSH session stay alive longer!!! It is super common for the pipe to break and your transfer to stall out!
   - ```ssh -o "ServerAliveInterval 60" -o "ServerAliveCountMax 120" USER@spitfire.genomecenter.ucdavis.edu```
   - This will send a wake signal every 60 seconds, 120 times (stay alive for 2 hours)
 - Under the Transfer & Timer Options menu on Globus, consider selecting "sync" and for the drop-down option that appears, select "checksum is different". Depending on how big your files are, this could definitely increase the sync time. 
