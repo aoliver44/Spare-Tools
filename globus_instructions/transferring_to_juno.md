@@ -158,6 +158,9 @@ $ ./globusconnectpersonal -status
 - If you cant open a directory in globus for Spitfire, check that config-paths file and make sure the path is correct
 - If you cant open the project directory, make sure you have permission to access it. Ask the project directory owner, or in Ceres, run:
   - ``` /usr/local/bin/my_quotas ```
+- **You should set up a screen session if you are transferring from a remote server to Juno**. It is super common for the pipe to break and your transfer to stall out!
+  - ```screen -S globus_transfer```
+- Under the Transfer & Timer Options menu on Globus, consider selecting "sync" and for the drop-down option that appears, select "checksum is different". Depending on how big your files are, this could definitely increase the sync time. 
 
 -----------
 Last modified: May 6, 2022
