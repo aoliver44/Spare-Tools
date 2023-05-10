@@ -166,4 +166,4 @@ $ ./globusconnectpersonal -status
 - Under the Transfer & Timer Options menu on Globus, consider selecting "sync" and for the drop-down option that appears, select "checksum is different". Depending on how big your files are, this could definitely increase the sync time. 
 
 -----------
-Last modified: May 6, 2022
+Last modified: May 10, 2023
