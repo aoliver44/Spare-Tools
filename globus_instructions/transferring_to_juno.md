@@ -162,6 +162,7 @@ $ ./globusconnectpersonal -status
   - ```screen -S globus_transfer```
 - **Better yet**, make your SSH session stay alive longer!!!
   - ```ssh -o "ServerAliveInterval 60" -o "ServerAliveCountMax 120" USER@spitfire.genomecenter.ucdavis.edu```
+  - This will send a wake signal every 60 seconds, 120 times (stay alive for 2 hours)
 - Under the Transfer & Timer Options menu on Globus, consider selecting "sync" and for the drop-down option that appears, select "checksum is different". Depending on how big your files are, this could definitely increase the sync time. 
 
 -----------
