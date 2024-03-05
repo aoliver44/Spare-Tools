@@ -92,7 +92,7 @@ module load /software/modules/1.923/lssc0-linux/modulefiles/anaconda3/23.1.0
 source activate metaphlan-4.0.6
 
 ## run your command!
-metaphlan [options] ${fasta_path}
+metaphlan [options] --output ${RESULTS}/${subject}.metaphlan.out ${fasta_path}
 
 " > script_${line}.sh
 
