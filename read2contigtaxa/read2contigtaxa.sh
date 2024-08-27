@@ -97,7 +97,7 @@ if [ ${FILTER} == "none" ]; then
 echo "No filter specified, looking at all reads in diamond file. This may take a long time..."
 else
 echo "Filter being used: " ${FILTER}
-grep -F "${FILTER}" ${WORKDIR}tmp_read_names > ${WORKDIR}tmp_read_names_filt
+grep -F "${FILTER}|" ${WORKDIR}tmp_read_names > ${WORKDIR}tmp_read_names_filt
 echo "Number of filtered hits to search for: " $(grep -c "${FILTER}" ${WORKDIR}tmp_read_names)
 rm ${WORKDIR}tmp_read_names
 mv ${WORKDIR}tmp_read_names_filt ${WORKDIR}tmp_read_names
@@ -150,5 +150,7 @@ done < ${WORKDIR}${subject}.blastout.tmp > ${WORKDIR}${subject}_fullout.txt
 ## what the output coluumns mean
 ## first several are diamond columns
 #contig_name read_name database_name bitscore qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore contig_length contig_name kingdom kingdom_confidence phylum phylum_confidence class class_confidence order order_confidence family family_confidence genus genus_confidence species species_condifence
+
+rm ${WORKDIR}${subject}*blastdb*
 
 echo "Done!!"
