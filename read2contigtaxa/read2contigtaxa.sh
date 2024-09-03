@@ -30,8 +30,8 @@ FILT="none"
 
 ## What some of these files should look like:
 # your diamond alignment file should look like this:
-#A01535:301:H5TFNDSX7:4:1262:16423:28682	ALK86697.1|GH2|	100.0	81	0	0	2	244	690	770	5.0e-41	169.5
-#A01535:301:H5TFNDSX7:4:2525:24198:11115	ALB75843.1|CBM20|GH77|	100.0	95	0	0	2	286	216	310	1.2e-49	198.4
+#A01535:301:H5TFNDSX7:4:1262:16423:28682	ALK86697.1|GH2|	100.0	81	0	0	2244	690	770	5.0e-41	169.5
+#A01535:301:H5TFNDSX7:4:2525:24198:11115	ALB75843.1|CBM20|GH77|	100.0	95	0	02	286	216	310	1.2e-49	198.4
 #	Note the above column1 is the name of the read, which matches a read in the path/to/reads.fa
 #	Note the above column2 is a hit to a database. It should have some string for -f to match to.
 #		If not, it will just search all lines in read file
@@ -111,6 +111,9 @@ echo "Done! Found the reads, and output to:  " ${WORKDIR}fasta_to_map.fasta
 
 ## create contig db for blast
 echo "Making blastn database..."
+file ${CONTIGS} > ${WORKDIR}tmp_info1
+if grep -q "gzip" ${WORKDIR}tmp_info1; then echo "Contigs file compressed. Please uncompress before proceeding"; exit; fi
+
 makeblastdb -in ${CONTIGS} -input_type fasta -dbtype nucl -out ${WORKDIR}${subject}_blastdb
 
 ## blast reads against DB
@@ -136,15 +139,19 @@ diamond=/share/lemaylab-backedup/milklab/programs/diamond
 echo "Assigning taxonomy to the contigs..."
 $CAT contigs -c ${WORKDIR}contigs_to_identify.fasta -d $CATdb/2019-07-19_CAT_database -t $CATdb/2019-07-19_taxonomy --path_to_prodigal $progdigal --path_to_diamond $diamond -o ${WORKDIR}${subject}_CAT -n ${CORES}
 $CAT add_names -i ${WORKDIR}${subject}_CAT.contig2classification.txt -o ${WORKDIR}${subject}_CAT.taxaid.txt -t $CATdb/2019-07-19_taxonomy --only_official
-cut -f1,6-13 ${WORKDIR}${subject}_CAT.taxaid.txt | grep -v "#" > ${WORKDIR}${subject}_CAT.taxaid.txt.SUMMARY
+cut -f1,6-13 ${WORKDIR}${subject}_CAT.taxaid.txt | grep -v "#" | sed "s/\t/|/g" | sed "s/:/|/g" | sed "s/ //g" > ${WORKDIR}${subject}_CAT.taxaid.txt.SUMMARY
 echo "Done! Taxonomy assigned."
 
 ## get full output file
-
 cut -f1-2 ${WORKDIR}${subject}.blastout > ${WORKDIR}${subject}.blastout.tmp
-while read read_name contig_name; do echo ${contig_name} $(grep -F -m 1 "${read_name}" ${DIAMOND}); done < ${WORKDIR}${subject}.blastout.tmp > ${WORKDIR}${subject}.blastout.tmp2
+while read read_name contig_name; do echo ${subject} ${contig_name} $(grep -F -m 1 "${read_name}" ${DIAMOND} | sed "s/|/_/g"); done < ${WORKDIR}${subject}.blastout.tmp > ${WORKDIR}${subject}.blastout.tmp2
+
+## remove a lot of stuff that just isnt necessary
+cut -f1-4 -d' ' ${WORKDIR}${subject}.blastout.tmp2 | sed "s/ /|/g" > ${WORKDIR}${subject}.blastout.tmp3
+
+## convert spaces to "|" for common delim
 while read read_name contig_name; do
-echo $(grep -F -m 1 "${read_name}" ${WORKDIR}${subject}.blastout.tmp2) $(grep -F -m 1 "${contig_name}" ${WORKDIR}contigs_to_identify.fasta | cut -f4 -d' ') $(grep -F -m 1 "${contig_name}" ${WORKDIR}/${subject}_CAT.taxaid.txt.SUMMARY)
+echo $(grep -F -m 1 "${read_name}" ${WORKDIR}${subject}.blastout.tmp3)$'|'$(grep -F -m 1 "${contig_name}" ${WORKDIR}contigs_to_identify.fasta | cut -f4 -d' ')$'|'$(grep -F -m 1 "${contig_name}" ${WORKDIR}/${subject}_CAT.taxaid.txt.SUMMARY)
 done < ${WORKDIR}${subject}.blastout.tmp > ${WORKDIR}${subject}_fullout.txt
 
 ## what the output coluumns mean
