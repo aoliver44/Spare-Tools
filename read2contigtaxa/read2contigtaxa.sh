@@ -161,3 +161,19 @@ done < ${WORKDIR}${subject}.blastout.tmp > ${WORKDIR}${subject}_fullout.txt
 rm ${WORKDIR}${subject}*blastdb*
 
 echo "Done!!"
+
+# ## to read into R, here is some ideas. Paths need to change:
+# library(readr)
+# library(dplyr)
+# library(tidyr)
+# library(tibble)
+
+# ## read in df
+# colnames <- c("subject_id", "contig_name", "read_name", "cazy_db_hit", "contig_legth", "contig_name_dup", "kingdom", "k_conf", "phylum", "p_conf", "class", "c_conf", "order", "o_conf", "family", "f_conf", "genus", "g_conf", "species", "s_conf")
+# gh_output <- readr::read_delim(file = "/home/data/7090_fullout.txt", delim = "|", col_names = colnames)
+
+# ## remove columns that are probably unnessary
+# gh_output <- gh_output %>% dplyr::select(., -dplyr::any_of(c("k_conf", "p_conf", "c_conf", "o_conf", "f_conf", "g_conf", "s_conf", "contig_name_dup")))
+
+# ## seperate the cazy_db_hit
+# gh_output <- gh_output %>% tidyr::separate(., col = cazy_db_hit, sep = "_", into = c("gene", "CAZyme", "EC", "Extra", "Extra2"), extra = "merge")
