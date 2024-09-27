@@ -140,13 +140,13 @@ Ok, assumming its pretty empty, time to get GNU parallel running for you. If you
 On a screens session:
 
 ```
-parallel -j 10 --dryrun bash {} :::: <(ls -l script_*.sh | cut -d" " -f10)
+parallel -j 10 --dryrun bash {} :::: <(ls -l script_*.sh | awk '{print $9}')
 ```
 
 That will print out the commands that parallel sees. It will not run them! If everything looks good, remove --dryrun:
 
 ```
-parallel -j 10 bash {} :::: <(ls -l script_*.sh | cut -d" " -f10)
+parallel -j 10 bash {} :::: <(ls -l script_*.sh | awk '{print $9}')
 ```
 
 So what is happening here?
@@ -154,7 +154,7 @@ So what is happening here?
 - You are saying, run 10 jobs at a time. If one finishes, start the next job. At any one time, only 10 jobs will be running
   - **NOTE:** This are jobs! To know how many cores you are using, multiple 10 * the number of cores an individual job uses.
 - ```bash {}``` is just "running" the shell script (i.e. script_1123.sh)
-- ```<(ls -l script_*.sh | cut -d" " -f10)``` is a bit of fancy subsitution. It is basically making a list of all the scripts you made and feeding them into parallel.
+- ```<(ls -l script_*.sh | awk '{print $9}')``` is a bit of fancy subsitution. It is basically making a list of all the scripts you made and feeding them into parallel.
 
 
 Thats it! Again, this is a rather complicated affair...but it gets easier the more you do it. And, most of all, you are probably getting your jobs running instantly instead of wating for the (often crowded) queues on Barbera. Some good tips are:
